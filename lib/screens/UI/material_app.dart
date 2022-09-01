@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_switch/Translations.dart';
 import 'package:project_switch/screens/UI/home_screen.dart';
-
-
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:stream_chat_localizations/stream_chat_localizations.dart';
 
-import 'channel_list_view.dart';
+
 
 
 

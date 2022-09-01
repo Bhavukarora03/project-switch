@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         toolbarHeight: 100,
         leading: IconBackground(
           icon: CupertinoIcons.search,
@@ -92,41 +93,53 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        top: false,
-        bottom: true,
+      top: false,
+      bottom: true,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15.0,left: 8, right: 8),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _NavigationBarItems(
-              icon: CupertinoIcons.bubble_left_bubble_right_fill,
-              label: "Messages",
-              index: 0,
-              onTap: handleItemSelected,
-              isSelected: (selectedIndex == 0),
-            ),
-            _NavigationBarItems(
-              icon: CupertinoIcons.bell_fill,
-              label: "Notifications",
-              index: 1,
-              onTap: handleItemSelected,
-              isSelected: (selectedIndex == 1),
-            ),
-            _NavigationBarItems(
-              icon: CupertinoIcons.phone_fill,
-              label: "Calls",
-              index: 2,
-              onTap: handleItemSelected,
-              isSelected: (selectedIndex == 2),
-            ),
-            _NavigationBarItems(
-              icon: CupertinoIcons.person_2_fill,
-              label: "Contacts",
-              index: 3,
-              onTap: handleItemSelected,
-              isSelected: (selectedIndex == 3),
-            ),
-          ],
-        ));
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _NavigationBarItems(
+                icon: CupertinoIcons.bubble_left_bubble_right_fill,
+                label: "Messages",
+                index: 0,
+                onTap: handleItemSelected,
+                isSelected: (selectedIndex == 0),
+              ),
+              _NavigationBarItems(
+                icon: CupertinoIcons.bell_fill,
+                label: "Notifications",
+                index: 1,
+                onTap: handleItemSelected,
+                isSelected: (selectedIndex == 1),
+              ),
+              GlowingActionButton(
+                size: 35,
+
+                 icon: CupertinoIcons.plus,
+                  color: Colors.blue.shade800,
+
+                onPressed: () {},
+              ),
+              _NavigationBarItems(
+                icon: CupertinoIcons.phone_fill,
+                label: "Calls",
+                index: 2,
+                onTap: handleItemSelected,
+                isSelected: (selectedIndex == 2),
+              ),
+              _NavigationBarItems(
+                icon: CupertinoIcons.person_2_fill,
+                label: "Contacts",
+                index: 3,
+                onTap: handleItemSelected,
+                isSelected: (selectedIndex == 3),
+              ),
+            ],
+          ),
+      ),
+    );
   }
 }
 

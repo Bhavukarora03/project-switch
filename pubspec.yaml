@@ -23,6 +23,8 @@ dependencies:
   stream_chat: ^4.4.1
   stream_chat_localizations: ^3.3.0
   cached_network_image: ^3.2.1
+  faker: ^2.0.0
+  jiffy: ^5.0.0
 
 dev_dependencies:
   flutter_test:

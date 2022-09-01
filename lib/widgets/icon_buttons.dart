@@ -2,17 +2,19 @@
 import 'package:flutter/material.dart';
 
 class IconBackground extends StatelessWidget {
-  const IconBackground({Key key, this.icon, this.onPressed}) : super(key: key);
+  const IconBackground({Key key, this.icon, this.onPressed, this.size = 18}) : super(key: key);
+  const IconBackground.small({Key key, this.icon, this.onPressed, this.size = 12}) : super(key: key);
 
   final IconData icon;
   final VoidCallback onPressed;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return  Material(
-      borderRadius: const BorderRadius.all(Radius.circular(6)),
+      borderRadius: const BorderRadius.all(Radius.circular(50)),
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(6)),
+        borderRadius: const BorderRadius.all(Radius.circular(50)),
         onTap: onPressed,
         child:  Padding(
 
@@ -20,7 +22,7 @@ class IconBackground extends StatelessWidget {
           child:  Icon(
             icon,
             color: Colors.white,
-            size: 18,
+            size: size,
           ),
         ),
       ),
