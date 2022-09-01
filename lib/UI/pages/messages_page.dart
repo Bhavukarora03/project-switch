@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:project_switch/UI/screens/chat_screen.dart';
 import 'package:project_switch/helper.dart';
 import 'package:project_switch/models/models.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -13,7 +14,7 @@ class MessagesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: _Stories()),
+        const SliverToBoxAdapter(child: _Stories()),
         SliverList(
           delegate: SliverChildBuilderDelegate(_delagtes),
         )
@@ -26,11 +27,11 @@ class MessagesPage extends StatelessWidget {
     final date = Helpers.randomDate();
     return _MessageTile(
       messageData: MessageData(
-        SenderName: faker.person.name(),
+        senderName: faker.person.name(),
         message: faker.lorem.sentence(),
         messageDate: date,
         messageTime: Jiffy(date).fromNow(),
-        ProfileImage: Helpers.randomURL(),
+        profileImage: Helpers.randomURL(),
       ),
     );
   }
@@ -47,11 +48,14 @@ class _MessageTile extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
+            onTap: () {
+              Navigator.of(context).push(ChatScreen.route(messageData));
+            },
             minVerticalPadding: 10,
             leading: Avatar.medium(
-              url: messageData.ProfileImage,
+              url: messageData.profileImage,
             ),
-            title: Text(messageData.SenderName),
+            title: Text(messageData.senderName),
             subtitle: Text(
               messageData.message,
               style: const TextStyle(overflow: TextOverflow.ellipsis),
@@ -68,7 +72,7 @@ class _MessageTile extends StatelessWidget {
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-                    child: Center(child: Text("1"))),
+                    child: const Center(child: Text("1"))),
               ],
             ),
           ),
@@ -99,8 +103,8 @@ class _Stories extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+           const  Padding(
+              padding: EdgeInsets.all(10.0),
               child: Text("Stories"),
             ),
             Expanded(

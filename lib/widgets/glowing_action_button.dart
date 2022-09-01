@@ -22,7 +22,7 @@ class GlowingActionButton extends StatelessWidget {
               color: color.withOpacity(0.5),
               spreadRadius: 10,
               blurRadius: 15,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
 
 

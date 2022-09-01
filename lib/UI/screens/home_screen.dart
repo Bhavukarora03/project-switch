@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_switch/helper.dart';
-import 'package:project_switch/screens/UI/calls_page.dart';
-import 'package:project_switch/screens/UI/contacts_page.dart';
-import 'package:project_switch/screens/UI/messages_page.dart';
-import 'package:project_switch/screens/UI/notification_page.dart';
+
 
 import '../../widgets/widgets.dart';
+import '../pages/calls_page.dart';
+import '../pages/contacts_page.dart';
+import '../pages/messages_page.dart';
+import '../pages/notification_page.dart';
 
 class HomeScreen extends StatefulWidget {
+
+
   const HomeScreen({Key key}) : super(key: key);
 
   @override
@@ -96,48 +99,49 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
       top: false,
       bottom: true,
       child: Padding(
-        padding: const EdgeInsets.only(top: 15.0,left: 8, right: 8),
+        padding: const EdgeInsets.only(top: 15.0, left: 8, right: 8),
         child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _NavigationBarItems(
-                icon: CupertinoIcons.bubble_left_bubble_right_fill,
-                label: "Messages",
-                index: 0,
-                onTap: handleItemSelected,
-                isSelected: (selectedIndex == 0),
-              ),
-              _NavigationBarItems(
-                icon: CupertinoIcons.bell_fill,
-                label: "Notifications",
-                index: 1,
-                onTap: handleItemSelected,
-                isSelected: (selectedIndex == 1),
-              ),
-              GlowingActionButton(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _NavigationBarItems(
+              icon: CupertinoIcons.bubble_left_bubble_right_fill,
+              label: "Messages",
+              index: 0,
+              onTap: handleItemSelected,
+              isSelected: (selectedIndex == 0),
+            ),
+            _NavigationBarItems(
+              icon: CupertinoIcons.bell_fill,
+              label: "Notifications",
+              index: 1,
+              onTap: handleItemSelected,
+              isSelected: (selectedIndex == 1),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: GlowingActionButton(
                 size: 35,
-
-                 icon: CupertinoIcons.plus,
-                  color: Colors.blue.shade800,
-
+                icon: CupertinoIcons.plus,
+                color: Colors.blue.shade800,
                 onPressed: () {},
               ),
-              _NavigationBarItems(
-                icon: CupertinoIcons.phone_fill,
-                label: "Calls",
-                index: 2,
-                onTap: handleItemSelected,
-                isSelected: (selectedIndex == 2),
-              ),
-              _NavigationBarItems(
-                icon: CupertinoIcons.person_2_fill,
-                label: "Contacts",
-                index: 3,
-                onTap: handleItemSelected,
-                isSelected: (selectedIndex == 3),
-              ),
-            ],
-          ),
+            ),
+            _NavigationBarItems(
+              icon: CupertinoIcons.phone_fill,
+              label: "Calls",
+              index: 2,
+              onTap: handleItemSelected,
+              isSelected: (selectedIndex == 2),
+            ),
+            _NavigationBarItems(
+              icon: CupertinoIcons.person_2_fill,
+              label: "Contacts",
+              index: 3,
+              onTap: handleItemSelected,
+              isSelected: (selectedIndex == 3),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -167,7 +171,7 @@ class _NavigationBarItems extends StatelessWidget {
         onTap(index);
       },
       child: SizedBox(
-        height: 70,
+        width: 70,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -180,8 +184,9 @@ class _NavigationBarItems extends StatelessWidget {
               height: 10,
             ),
             Text(label,
-                style:
-                    isSelected ? TextStyle(color: Colors.blue.shade800) : null)
+                style: isSelected
+                    ? TextStyle(color: Colors.blue.shade800, fontSize: 12)
+                    : const TextStyle(fontSize: 12))
           ],
         ),
       ),
