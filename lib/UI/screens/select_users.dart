@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:project_switch/models/users_model.dart';
+import 'package:get/get.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../../widgets/avatar.dart';
-import 'home_screen.dart';
+import '../../models/models.dart';
+import '../../widgets/widgets.dart';
+import 'screens.dart';
+
 
 class SelectUsersScreen extends StatefulWidget {
   const SelectUsersScreen({Key key}) : super(key: key);
 
   static Route get route {
-    return MaterialPageRoute(builder: (context) => SelectUsersScreen());
+    return MaterialPageRoute(builder: (context) => const SelectUsersScreen());
   }
 
   @override
@@ -17,8 +19,10 @@ class SelectUsersScreen extends StatefulWidget {
 }
 
 class _SelectUsersScreenState extends State<SelectUsersScreen> {
+  StreamChatCore streamChatCore;
+  StreamChannelListController channelListController;
+
   bool _loading = false;
-  StreamChat streamChatWidget;
 
   Future<void> onUsersSelected(Users user) async {
     setState(() {
@@ -26,21 +30,15 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
     });
     try {
       final client = StreamChat.of(context).client;
-      // await client.disconnectUser();
+      //await client.disconnectUser();
       await client.connectUser(
           User(
               id: user.id, extraData: {'name': user.name, 'image': user.image}),
           client.devToken(user.id).rawValue);
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) {
-            HomeScreen();
-          },
-        ),
-      );
-    } on Exception catch (e, st) {
-      print(e);
+      Get.off(() => const HomeScreen());
+    } on Exception catch (e) {
+
       setState(() {
         _loading = false;
       });
@@ -50,7 +48,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("Select user")),
+      appBar: AppBar(centerTitle: true, title: const Text("Select user"), automaticallyImplyLeading: false,),
       body: (_loading)
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(

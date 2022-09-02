@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_switch/helper.dart';
-
-
+import 'package:project_switch/app.dart';
 import '../../widgets/widgets.dart';
-import '../pages/calls_page.dart';
-import '../pages/contacts_page.dart';
-import '../pages/messages_page.dart';
-import '../pages/notification_page.dart';
+import '../pages/pages.dart';
+import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -36,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.currentUser;
     return Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).iconTheme,
@@ -47,8 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 35.0),
-            child: Avatar.medium(
-              url: Helpers.randomURL(),
+            child: Hero(
+              tag: 'hero-profile-image',
+              child: Avatar.medium(
+                onPressed: (){Get.to(()=> const ProfileScreen());},
+                url: user.image,
+              ),
             ),
           )
         ],

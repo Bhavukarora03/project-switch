@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-const users = [userSam];
+const users = [userSam, userVuk];
 
 
 

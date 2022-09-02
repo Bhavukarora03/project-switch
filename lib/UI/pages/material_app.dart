@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:project_switch/Translations.dart';
 import 'package:project_switch/UI/screens/select_users.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:stream_chat_localizations/stream_chat_localizations.dart';
 
-import '../screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key, this.client,}) : super(key: key);
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark().copyWith(useMaterial3: true),
         debugShowCheckedModeBanner: false,
@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
           TranslationsDelegate(),
           ...GlobalStreamChatLocalizations.delegates
         ],
+
 
         );
   }

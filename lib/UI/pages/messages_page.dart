@@ -14,7 +14,7 @@ class MessagesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(child: _Stories()),
+        SliverToBoxAdapter(child: _Stories()),
         SliverList(
           delegate: SliverChildBuilderDelegate(_delagtes),
         )
@@ -72,7 +72,7 @@ class _MessageTile extends StatelessWidget {
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-                    child: const Center(child: Text("1"))),
+                    child: Center(child: Text("1"))),
               ],
             ),
           ),
@@ -103,8 +103,8 @@ class _Stories extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           const  Padding(
-              padding: EdgeInsets.all(10.0),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Text("Stories"),
             ),
             Expanded(
