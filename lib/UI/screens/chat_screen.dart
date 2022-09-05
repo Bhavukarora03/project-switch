@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:project_switch/models/models.dart';
 import 'package:project_switch/widgets/widgets.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 
 class ChatScreen extends StatelessWidget {
-  static Route route(MessageData data) {
-    return MaterialPageRoute(
-      builder: (context) => ChatScreen(
-        messageData: data,
-      ),
-    );
-  }
+static Route routeWithChannel(Channel channel) {
+  return MaterialPageRoute(
+    builder: (context) => StreamChannel(child: ChatScreen(), channel: channel),
+  );
+}
 
-  const ChatScreen({Key key, this.messageData}) : super(key: key);
+  const ChatScreen({Key? key, }) : super(key: key);
 
-  final MessageData messageData;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,9 @@ class ChatScreen extends StatelessWidget {
           ],
           toolbarHeight: 100,
           centerTitle: true,
-          title: _AppBarTitle(
-            messageData: messageData,
-          ),
+          // title: _AppBarTitle(
+          //   messageData: messageData,
+          // ),
         ),
         body: Column(
           children: const [
@@ -47,7 +46,7 @@ class ChatScreen extends StatelessWidget {
 }
 
 class _MessageList extends StatelessWidget {
-  const _MessageList({Key key}) : super(key: key);
+  const _MessageList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,7 @@ class _MessageList extends StatelessWidget {
 }
 
 class _MessageTile extends StatelessWidget {
-  const _MessageTile({Key key, this.message, this.messageTime})
+  const _MessageTile({Key? key, required this.message, required this.messageTime})
       : super(key: key);
 
   final String message;
@@ -127,10 +126,10 @@ class _MessageTile extends StatelessWidget {
 }
 
 class _MessageOwnTile extends StatelessWidget {
-  const _MessageOwnTile({Key key, this.message, this.messageTime})
+  const _MessageOwnTile({Key? key, this.message, this.messageTime})
       : super(key: key);
-  final String message;
-  final String messageTime;
+  final String? message;
+  final String? messageTime;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +154,7 @@ class _MessageOwnTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 12.0),
                 child: Text(
-                  message,
+                  message!,
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),
@@ -165,7 +164,7 @@ class _MessageOwnTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                messageTime,
+                messageTime!,
                 style: const TextStyle(
                   fontSize: 12.0,
                   color: Colors.grey,
@@ -180,7 +179,7 @@ class _MessageOwnTile extends StatelessWidget {
 }
 
 class _Datelabel extends StatelessWidget {
-  const _Datelabel({Key key, this.label}) : super(key: key);
+  const _Datelabel({Key? key, required this.label}) : super(key: key);
 
   final String label;
 
@@ -207,18 +206,18 @@ class _Datelabel extends StatelessWidget {
 }
 
 class _AppBarTitle extends StatelessWidget {
-  const _AppBarTitle({Key key, this.messageData}) : super(key: key);
+  const _AppBarTitle({Key? key,  this.messageData}) : super(key: key);
 
-  final MessageData messageData;
+  final MessageData? messageData;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        messageData.senderName,
+        messageData!.senderName,
         overflow: TextOverflow.ellipsis,
       ),
-      leading: Avatar.medium(url: messageData.profileImage),
+      leading: Avatar.medium(url: messageData!.profileImage),
       subtitle: Text(
         'Online',
         style: TextStyle(color: Colors.green.shade500),
@@ -228,7 +227,7 @@ class _AppBarTitle extends StatelessWidget {
 }
 
 class _ActionBar extends StatelessWidget {
-  const _ActionBar({Key key}) : super(key: key);
+  const _ActionBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -269,7 +268,7 @@ class _ActionBar extends StatelessWidget {
             child: GlowingActionButton(
               onPressed: () {},
               icon: Icons.send_outlined,
-              color: Colors.deepOrange.shade900,
+              color: Colors.deepOrange.shade900, size: 18,
             ),
           )
         ],

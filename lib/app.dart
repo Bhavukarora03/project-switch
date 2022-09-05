@@ -10,7 +10,7 @@ var logger = log.Logger();
 
 extension StreamChatContext on BuildContext {
 
-  User get currentUser => StreamChatCore.of(this).currentUser;
-  String get currentUserImage => currentUser.image;
+  User? get currentUser => StreamChatCore.of(this).currentUser;
+  String? get currentUserImage => currentUser!.image;
 }
 

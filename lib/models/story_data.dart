@@ -7,5 +7,5 @@ class StoryData{
   final String name;
   final String url;
 
-  const StoryData({this.name, this.url});
+  const StoryData({required this.name, required this.url});
 }

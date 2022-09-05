@@ -7,10 +7,10 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../widgets/widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key key}) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   static Route get route =>
-      MaterialPageRoute(builder: (context) => const ProfileScreen());
+      MaterialPageRoute(builder: (context) =>  const ProfileScreen());
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,13 @@ class ProfileScreen extends StatelessWidget {
             Hero(
               tag: 'hero-profile-image',
               child: Avatar.large(
-                url: user.image,
+                url: user!.image,
                 onPressed: () {},
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(user.name ?? ""),
+              child: Text(user.name),
             ),
             const _SignOutButton()
           ],
@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class _SignOutButton extends StatefulWidget {
-  const _SignOutButton({Key key}) : super(key: key);
+  const _SignOutButton({Key? key}) : super(key: key);
 
   @override
   State<_SignOutButton> createState() => _SignOutButtonState();
@@ -61,7 +61,7 @@ class _SignOutButtonState extends State<_SignOutButton> {
     try {
       final client = StreamChat.of(context).client;
       await client.disconnectUser();
-      Get.off(() => const SelectUsersScreen());
+      Get.off(() =>  const SelectUsersScreen());
     } on Exception catch (e) {
       logger.e(e);
       setState(
@@ -74,6 +74,6 @@ class _SignOutButtonState extends State<_SignOutButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: _signOut, child: Text("Sign out"));
+    return ElevatedButton(onPressed: _signOut, child: const Text("Sign out"));
   }
 }

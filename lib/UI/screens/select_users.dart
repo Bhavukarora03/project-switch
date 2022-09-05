@@ -8,10 +8,10 @@ import 'screens.dart';
 
 
 class SelectUsersScreen extends StatefulWidget {
-  const SelectUsersScreen({Key key}) : super(key: key);
+  const SelectUsersScreen({Key? key}) : super(key: key);
 
   static Route get route {
-    return MaterialPageRoute(builder: (context) => const SelectUsersScreen());
+    return MaterialPageRoute(builder: (context) =>  const SelectUsersScreen());
   }
 
   @override
@@ -19,8 +19,8 @@ class SelectUsersScreen extends StatefulWidget {
 }
 
 class _SelectUsersScreenState extends State<SelectUsersScreen> {
-  StreamChatCore streamChatCore;
-  StreamChannelListController channelListController;
+  late StreamChatCore streamChatCore;
+  late StreamChannelListController channelListController;
 
   bool _loading = false;
 
@@ -36,7 +36,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
               id: user.id, extraData: {'name': user.name, 'image': user.image}),
           client.devToken(user.id).rawValue);
 
-      Get.off(() => const HomeScreen());
+      Get.off(() =>  const HomeScreen());
     } on Exception catch (e) {
 
       setState(() {
@@ -64,7 +64,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
 }
 
 class SelectedUserButton extends StatelessWidget {
-  const SelectedUserButton({Key key, this.onPressed, this.user})
+  const SelectedUserButton({Key? key, required this.onPressed, required this.user})
       : super(key: key);
   final Function(Users user) onPressed;
   final Users user;

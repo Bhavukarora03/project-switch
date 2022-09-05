@@ -6,9 +6,7 @@ import '../pages/pages.dart';
 import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
-
-
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -47,8 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Hero(
               tag: 'hero-profile-image',
               child: Avatar.medium(
-                onPressed: (){Get.to(()=> const ProfileScreen());},
-                url: user.image,
+                onPressed: () {
+                  Get.to(() => const ProfileScreen());
+                },
+                url: user!.image,
               ),
             ),
           )
@@ -75,8 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class _BottomNavigationBar extends StatefulWidget {
   const _BottomNavigationBar({
-    Key key,
-    this.onItemSelected,
+    Key? key,
+    required this.onItemSelected,
   }) : super(key: key);
 
   final ValueChanged onItemSelected;
@@ -119,12 +119,21 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
               isSelected: (selectedIndex == 1),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: GlowingActionButton(
                 size: 35,
                 icon: CupertinoIcons.plus,
                 color: Colors.blue.shade800,
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext conext) {
+                        return Dialog(
+                          child: ContactsPage(),
+                        );
+                      });
+                },
               ),
             ),
             _NavigationBarItems(
@@ -150,11 +159,11 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
 
 class _NavigationBarItems extends StatelessWidget {
   const _NavigationBarItems(
-      {Key key,
-      this.icon,
-      this.label,
-      this.index,
-      this.onTap,
+      {Key? key,
+      required this.icon,
+      required this.label,
+      required this.index,
+      required this.onTap,
       this.isSelected = false})
       : super(key: key);
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GlowingActionButton extends StatelessWidget {
   const GlowingActionButton(
-      {Key key, this.onPressed, this.icon, this.size, this.color})
+      { Key? key, required this.onPressed, required this.icon, required this.size, required this.color})
       : super(key: key);
 
   final VoidCallback onPressed;

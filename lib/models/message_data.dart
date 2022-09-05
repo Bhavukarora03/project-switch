@@ -9,9 +9,9 @@ class MessageData {
   final String profileImage;
 
   const MessageData(
-      {this.senderName,
-      this.message,
-      this.messageDate,
-      this.messageTime,
-      this.profileImage});
+      {required this.senderName,
+      required this.message,
+      required this.messageDate,
+      required this.messageTime,
+      required this.profileImage});
 }

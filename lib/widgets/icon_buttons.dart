@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 class IconBackground extends StatelessWidget {
-  const IconBackground({Key key, this.icon, this.onPressed, this.size = 18}) : super(key: key);
-  const IconBackground.small({Key key, this.icon, this.onPressed, this.size = 12}) : super(key: key);
+  const IconBackground({ Key? key, required this.icon, required this.onPressed, this.size = 18}) : super(key: key);
+  const IconBackground.small({ Key? key, required this.icon, required this.onPressed, this.size = 12}) : super(key: key);
 
   final IconData icon;
   final VoidCallback onPressed;

@@ -7,7 +7,7 @@ import 'package:stream_chat_localizations/stream_chat_localizations.dart';
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key, this.client,}) : super(key: key);
+  const MyApp({Key? key, required this.client,}) : super(key: key);
 
   final StreamChatClient client;
 

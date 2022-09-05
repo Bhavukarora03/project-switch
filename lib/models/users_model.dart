@@ -21,5 +21,5 @@ class Users {
   final String name;
   final String image;
 
-  const Users({this.id, this.name, this.image});
+  const Users({required this.id, required this.name, required this.image});
 }

@@ -6,7 +6,7 @@ class Translations {
 
   final Locale locale;
 
-  static Translations of(BuildContext context) {
+  static Translations? of(BuildContext context) {
     return Localizations.of<Translations>(context, Translations);
   }
 
@@ -24,7 +24,7 @@ class Translations {
   };
 
   String text(String key) {
-    return _localizedValues[locale.languageCode][key] ?? '** $key not found';
+    return _localizedValues[locale.languageCode]![key] ?? '** $key not found';
   }
 }
 
