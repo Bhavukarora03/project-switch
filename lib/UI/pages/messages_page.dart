@@ -1,14 +1,15 @@
+
+
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:project_switch/app.dart';
 import 'package:project_switch/helper.dart';
 import 'package:project_switch/models/models.dart';
-
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../../widgets/display_error_widget.dart';
-import '../../widgets/widgets.dart';
 import 'package:project_switch/UI/screens/screens.dart';
+
+import '../../widgets/widgets.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({Key? key}) : super(key: key);
@@ -125,15 +126,9 @@ class _MessageTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                _BuildLastMessageAt(),
-                Container(
-                    width: 18,
-                    height: 18,
-                    decoration: const BoxDecoration(
-                      color: Colors.green,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(child: Text("1"))),
+               _BuildLastMessageAt(),
+
+               UnreadIndicatorText(channel: channel),
               ],
             ),
           ),
@@ -149,20 +144,25 @@ class _MessageTile extends StatelessWidget {
   }
 
   Widget _BuildLastMessage() {
-    return BetterStreamBuilder<Message>(
-      stream: channel.state!.lastMessageStream,
-      initialData: channel.state!.lastMessage,
-      builder: (context, message) {
-        if (message == null) {
-          return const SizedBox.shrink();
-        }
-        return Text(
-          message.text!,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        );
-      },
-    );
+    return BetterStreamBuilder<int>(
+        stream: channel.state!.unreadCountStream,
+        initialData: channel.state!.unreadCount,
+        builder: (context, count) {
+          return BetterStreamBuilder<Message>(
+              stream: channel.state!.lastMessageStream,
+              initialData: channel.state!.lastMessage,
+              builder: (context, message) {
+                if (message == null) {
+                  return const SizedBox.shrink();
+                }
+                return Text(
+                  message.text!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: (count > 0) ? const TextStyle(color: Colors.green) : const TextStyle(color: Colors.white),
+                );
+              });
+        });
   }
 
   Widget _BuildLastMessageAt() {

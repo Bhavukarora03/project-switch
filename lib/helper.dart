@@ -30,9 +30,9 @@ abstract class Helpers {
     return null;
   }
 
-  static String? getChannelName(Channel channel, User currentUser) {
+  static String getChannelName(Channel channel, User currentUser) {
     if (channel.name != null) {
-      return channel.name;
+      return channel.name!;
     } else if (channel.state!.members.isNotEmpty) {
       final members = channel.state!.members
           .where((element) => element.user!.id != currentUser.id)
@@ -43,6 +43,6 @@ abstract class Helpers {
         return members.map((e) => e.user!.name).join(', ');
       }
     }
-    return null;
+ return '';
   }
 }

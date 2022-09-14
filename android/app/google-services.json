@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "28407943478",
+    "project_id": "project-switch-7445c",
+    "storage_bucket": "project-switch-7445c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28407943478:android:383f135947a816aa25a397",
+        "android_client_info": {
+          "package_name": "me.bhavuk.swtich.project_switch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28407943478-bdn1hbs3sguvio70g7glh4cg7nuh6mv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALZ8q2e85zZvT2MOA4_hAk5iuj6Pg5EOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28407943478-bdn1hbs3sguvio70g7glh4cg7nuh6mv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

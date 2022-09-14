@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           return StreamChat(client: client, child: child);
         },
         home: const SelectUsersScreen(),
-        locale: const Locale('hi'),
+        locale: const Locale('en'),
         supportedLocales: const [
           Locale('en'),
           Locale('hi'),
